@@ -62,3 +62,5 @@ export const copiedImg =
 export const stopWatchImg =
   "https://d22ueo28hfk252.cloudfront.net/Content/versioned/2.0.0.1/images/version4/promotion_march_24/zenrik_images/Image-98-17115302636923.png?v=1711530264";
 export const remainder = userId % 17;
+
+export const campaign_id = 7;

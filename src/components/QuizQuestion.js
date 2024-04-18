@@ -1,6 +1,6 @@
 import React from "react";
 import Timer from "./Timer";
-import { userId, stopWatchImg } from "../utils/utils";
+import { userId, stopWatchImg, campaign_id } from "../utils/utils";
 import { useState, useEffect } from "react";
 
 const QuizQuestion = ({
@@ -69,25 +69,37 @@ const QuizQuestion = ({
   };
 
   const insertQuizSelection = async (questionId, answerId) => {
-    var result = {
-      status: true,
-      message: "Submission received",
-      data: {
-        response_payload: [
-          {
-            question_id: 16,
-            answer_id: 49,
-            is_correct: 1,
-            correct_answer_id: 50,
-          },
-        ],
-        correct_count: 1,
-      },
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    var raw = JSON.stringify({
+      user_id: userId,
+      submission: [
+        {
+          question_id: questionId,
+          answer_id: answerId,
+        },
+      ],
+    });
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
     };
 
-    localStorage.setItem(`correct_count_${userId}`, result.data.correct_count);
+    return fetch(
+      `https://corvus.howzat.com/v2/platform/1/campaign/${campaign_id}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        localStorage.setItem(
+          `correct_count_${userId}`,
+          result.data.correct_count
+        );
 
-    return result;
+        return result;
+      })
+      .catch((error) => console.log("error", error));
   };
 
   return (
@@ -114,7 +126,7 @@ const QuizQuestion = ({
           ))}
         </div>
         <div className="stopwatch">
-          <img src={stopWatchImg} />
+          <img src={stopWatchImg} alt="stopwatch" />
           <div>
             00:
             <Timer

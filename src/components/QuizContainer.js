@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import QuizQuestion from "./QuizQuestion";
 import Reward from "./Reward";
-import { userId, remainder } from "../utils/utils";
+import { userId, remainder, campaign_id } from "../utils/utils";
 import NotEligibleMessage from "./NotEligibleMessage";
 const QuizContainer = () => {
   const [quizData, setQuizData] = useState([]);
@@ -23,56 +23,40 @@ const QuizContainer = () => {
   }, [quizData]);
 
   const getDataFromApi = async () => {
-    try {
-      const res = {
-        data: {
-          campaign_id: 5,
-          campaign_name: "Live Quiz IPL 2024",
-          campaign_type: "quiz",
-          content: {
-            streaks: [],
-            timer: "unlimited",
-            quiz: [
-              {
-                question_id: 16,
-                question:
-                  "Who was the first highest paid foreign player in the Indian T20 League 2023 auction?",
-                answers: [
-                  { answer_id: 49, answer: "S Curran" },
-                  { answer_id: 50, answer: "P Cummins" },
-                ],
-              },
-              {
-                question_id: 17,
-                question:
-                  "Who was the second highest paid foreign player in the Indian T20 League 2023 auction?",
-                answers: [
-                  { answer_id: 53, answer: "Sandha" },
-                  { answer_id: 54, answer: "meghna" },
-                ],
-              },
-              {
-                question_id: 18,
-                question:
-                  "Who was the third highest paid foreign player in the Indian T20 League 2023 auction?",
-                answers: [
-                  { answer_id: 55, answer: "ABC" },
-                  { answer_id: 56, answer: "XYZ" },
-                ],
-              },
-            ],
-            submitted: [],
-          },
-        },
-        status: true,
-      };
+    var myHeaders = new Headers();
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+    };
+    let url = `https://corvus.howzat.com/v2/platform/1/campaign/${campaign_id}?user_id=${userId}`;
+    return fetch(url, requestOptions)
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.status == false) {
+          <NotEligibleMessage />;
+        } else {
+          if (res.data.content.quiz.length === 0) {
+            const eligible = document.querySelector(".eligible");
+            eligible.innerHTML =
+              "<p style='color:white;text-align:center'>Quiz will be active soon</p>";
+            eligible.style.minHeight = "72vh";
+          }
 
-      if (res.status) {
-        setQuizData(res.data.content.quiz);
-      }
-    } catch (error) {
-      console.error("Error fetching quiz data: ", error);
-    }
+          // correct_count = localStorage.getItem(`correct_count_${userId}`);
+          // let lengthofsubmited = res.data.content.submitted.length;
+          // if (lengthofsubmited > 0) {
+          //   for (let i = 0; i < lengthofsubmited; i++) {
+          //     correctanswerfromAPI += res.data.content.submitted[i].is_correct;
+          //   }
+          // }
+
+          if (res.status) {
+            setQuizData(res.data.content.quiz);
+          }
+          return res;
+        }
+      })
+      .catch((error) => console.log("error", error));
   };
 
   const displayNextQuestion = () => {
@@ -81,7 +65,11 @@ const QuizContainer = () => {
 
   const renderQuiz = () => {
     if (!quizData.length) {
-      return <div>Loading...</div>;
+      return (
+        <div>
+          <p style={{ color: "white", textAlign: "center" }}>Loading...</p>
+        </div>
+      );
     }
     if (remainder === 15 || remainder === 16) {
       return (
