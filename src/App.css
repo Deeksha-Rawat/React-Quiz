@@ -1,38 +1,434 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+.main-wrapper {
+  width: 100%;
+  background: #1f0026;
+}
+
+.main-banner {
+  position: relative;
+}
+
+.main-banner>img {
+  width: 100%;
+  display: block;
+}
+
+.main-banner p {
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  padding: 0px 14px;
+  margin: -10px 0px 12px 0px;
+}
+
+.quiz-cont {
+  padding: 10px;
+}
+
+.beforeStart {
+  position: relative;
+
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  display: none;
+}
+
+.quiz-cont button {
+  background: linear-gradient(to top, #089810 50%, #00aa0a 50%);
+  color: #fff;
+  padding: 10px 30px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 18px;
+  /* width: 30%; */
+  white-space: normal;
+  /* position: relative; */
+}
+
+.beforeStart button {
+  position: absolute;
+  bottom: 7%;
+}
+
+.static-cont {
+  padding: 10px 10px 56px;
+}
+
+.accordion_outer .accordion_hdr {
+  background: url("https://d22ueo28hfk252.cloudfront.net/Content/versioned/2.0.0.1/images/version4/promotion_march_24/zenrik_images/image-(4)-17115268366173.png?v=1711526837");
+  color: #fff;
+  margin: 5px 0;
+  padding: 11px 7px;
+  border-radius: 8px;
+  position: relative;
+  font-weight: 500;
+  text-align: left;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.accordion_outer {
+  margin-top: 20px;
+}
+
+.accordion_outer .accordion_hdr.active::after {
+  content: "";
+  top: 66%;
+  background: url("https://d22ueo28hfk252.cloudfront.net/Content/versioned/2.0.0.1/images/version4/promotion_july_21/zenrik_images/download-16261840191900.png?v=1626184019") no-repeat;
+}
+
+.accordion_outer .accordion_hdr::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  color: #000;
+  background: url("https://d22ueo28hfk252.cloudfront.net/Content/versioned/2.0.0.1/images/version4/promotion_july_21/zenrik_images/download-(1)-16261840206182.png?v=1626184021") no-repeat;
+  width: 30px;
+  height: 18px;
+  text-align: center;
+  transform: translateY(-50%);
+}
+
+.accordion_outer .accordion_hdr.active+.accordion_content {
+  visibility: visible;
+  opacity: 1;
+  height: auto;
+  margin-top: -10px;
+  margin-bottom: 18px;
+  border-radius: 0 0 8px 8px;
+  padding: 12px;
+  background: #2f1036;
+  overflow: hidden;
+  color: #fff;
+  font-size: 12px;
+}
+
+.accordion_outer .accordion_hdr+.accordion_content {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.accordion_outer .accordion_hdr.active+.accordion_content ul {
+  list-style-type: decimal;
+  margin-left: 15px;
+}
+
+.accordion_outer .accordion_hdr.active+.accordion_content ul li {
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.howitworks {
+  padding: 16px 5px;
+}
+
+.howitworks>div {
+  display: grid;
+  grid-template-columns: 40px calc(100% - 40px);
+  align-items: flex-start;
+  position: relative;
+}
+
+/* .howitworks > div > div:first-child {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      } */
+.howitworks>div>div:first-child p {
+  display: flex;
+  justify-content: center;
+}
+
+.howitworks p {
+  color: #fff;
+  line-height: inherit;
+  margin-bottom: 0px !important;
+  padding: 0.8vh 5px;
+  font-size: 12px;
+}
+
+.center-margin {
+  margin: auto 0px;
+}
+
+.howitworks>div>div:first-child p>span {
+  background: #fff;
+  color: #000;
+  width: 25px;
+  text-align: center;
+  height: 25px;
+  border-radius: 50px;
+  z-index: 8;
+  color: #2f1036;
+  line-height: 24px;
+}
+
+.howitworks>div>div:first-child p:after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  top: -7px;
+  background: #676767;
+}
+
+.howitworks>div:first-child>div:first-child p:after {
+  top: 20px;
+}
+
+.howtoplaysection .heading {
+  background: url("https://d22ueo28hfk252.cloudfront.net/Content/versioned/2.0.0.1/images/version4/promotion_march_24/zenrik_images/image-(3)-17115260966090.png?v=1711526097");
+  color: #fff;
+  margin: 5px 0;
+  padding: 11px 7px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.howtoplaysection .content {
+  background: #2f1036;
+  margin-top: -10px;
+}
+
+.quizimg {
+  width: 100%;
+}
+
+.afterStart {
+  background: url("https://d22ueo28hfk252.cloudfront.net/Content/versioned/2.0.0.1/images/version4/promotion_march_24/zenrik_images/Image-609-(1)-17115207738063.png?v=1711520774");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.afterStart>div {
+  padding: 10px 20px;
+  text-align: center;
+  text-align: -webkit-center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.ribbon {
+  background: url("https://d22ueo28hfk252.cloudfront.net/Content/versioned/2.0.0.1/images/version4/promotion_march_24/zenrik_images/Image-454-17115281301281.png?v=1711528130");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 60%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.ribbon p {
+  padding: 10px 0px;
+  color: #fff;
+  font-size: 15px;
+}
+
+.dymquestion {
+  font-weight: 500;
+  font-size: 15px;
+  margin: 16px auto;
+}
+
+.answerdiv {
   display: flex;
   flex-direction: column;
+}
+
+.option0,
+.option1 {
+  position: relative;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 6px 8px #00000029;
+  border: 2px solid #d3c69a;
+  border-radius: 200px;
+  padding: 12px;
+  margin: 8px;
+}
+
+.option0::before,
+.option1::before {
+  position: absolute;
+  content: "A";
+  background: #895a00 0% 0% no-repeat padding-box;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  left: 3%;
+  text-align: center;
+  top: 21%;
+  line-height: 25px;
+  color: #fff;
+}
+
+.option1::before {
+  content: "B";
+}
+
+/* stopwatch */
+.stopwatch {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 10px;
+  margin: 8px auto;
+  display: flex;
 }
 
-.App-link {
-  color: #61dafb;
+.stopwatch img {
+  width: 20px;
+  height: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.timer {
+  font-size: 15px;
+}
+
+.right-ans {
+  background: #228e08;
+  color: #fff;
+}
+
+.right-ans::before {
+  background: #fff;
+  color: #228e08;
+}
+
+.wrong-ans {
+  background: #e51919;
+  color: #fff;
+}
+
+.wrong-ans::before {
+  background: #fff;
+  color: #e51919;
+}
+
+.wrong-ans p::after {
+  content: "";
+  background: url("https://d22ueo28hfk252.cloudfront.net/Content/versioned/2.0.0.1/images/version4/promotion_march_24/zenrik_images/Image-428-17115366718496.png?v=1711536672");
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  right: 4%;
+  top: 24%;
+}
+
+.right-ans p::after {
+  content: "";
+  background: url("https://d22ueo28hfk252.cloudfront.net/Content/versioned/2.0.0.1/images/version4/promotion_march_24/zenrik_images/Image-427-17115366726839.png?v=1711536673");
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  right: 4%;
+  top: 24%;
+}
+
+/* .aftercomplete p {
+        font-weight: 600;
+      } */
+.aftercomplete>p:first-child {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.rewards {
+  font-size: 16.6px;
+  color: #fff;
+  padding: 12px 34px;
+}
+
+.ribbon1 {
+  background: url("https://d22ueo28hfk252.cloudfront.net/Content/versioned/2.0.0.1/images/version4/promotion_march_24/zenrik_images/Image-454-17115281301281.png?v=1711528130");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin: 12px auto;
+}
+
+.aftercomplete {
+  background: url("https://d22ueo28hfk252.cloudfront.net/Content/versioned/2.0.0.1/images/version4/promotion_march_24/zenrik_images/Image-609-17115385910881.png?v=1711538592");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding: 35px 20px;
+  position: relative;
+  /* min-height: 35vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  text-align: -webkit-center;
+}
+
+.copycode {
+  background: white;
+  border: 1px dotted red;
+  padding: 12px;
+  margin: 10px auto;
+}
+
+.benefits {
+  font-size: 18px;
+  margin: -10px 0px 10px 0px;
+}
+
+.copycode {
+  color: #ff0000;
+  font-size: 20px;
+}
+
+.copyimg {
+  width: 18px;
+}
+
+#copybutton {
+  display: grid;
+  grid-template-columns: 75% 25%;
+  align-items: center;
+  text-align: center;
+}
+
+#copybutton button {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  white-space: nowrap;
+}
+
+#copybutton p {
+  font-size: 8px;
+  font-weight: 500;
+  color: #3b3b3b;
+}
+
+.copytextcont {
+  background: white;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 1px solid #089810;
+  padding: 3px 3px;
+  width: 56px;
+}
+
+.answertext {
+  width: 90%;
 }

@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import Banner from "./components/Banner";
+import StaticContent from "./components/StaticContent";
+import QuizContainer from "./components/QuizContainer";
+import React, { useEffect } from "react";
+import { getParams, userPageVisitCapture } from "./utils/utils";
 function App() {
+  useEffect(() => {
+    const userId = getParams("userId") || "";
+
+    // userPageVisitCapture("Start-MatchHour-Pagevisits", userId);
+    // accordion_custom();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main-wrapper">
+      <Banner />
+      <QuizContainer />
+      <StaticContent />
     </div>
   );
 }
